@@ -23,7 +23,7 @@ jobs:
 
       - name: Try to download accounts.db
         id: download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         continue-on-error: true
         with:
           name: twscrape-db
@@ -40,7 +40,7 @@ jobs:
         run: python main.py
 
       - name: Upload updated accounts.db
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: twscrape-db
           path: accounts.db
