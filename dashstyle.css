@@ -1,0 +1,650 @@
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nova+Slim&family=Major+Mono+Display&family=Sirin+Stencil&family=Zen+Loop:ital@0;1&display=swap');
+
+    :root {
+        --dark-blue: #04245c;
+        /* Updated to strong navy from the light theme palette */
+        --light-blue: #AECBD8;
+        /* Light blue accent */
+        --mint: #e6f7f5;
+        --coral: #ef6a51;
+        --navy: #0e3359;
+        --whitish: #f5f5f5;
+        --vibrant-blue: #2040b3;
+        --charcoal: #272626;
+        /* Vibrant blue for accents */
+    }
+
+    /* Universal Box-Sizing */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body Styling: Font, Background, Color, Layout */
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        /* Using the light theme's pastel gradient background */
+        background: linear-gradient(135deg, #E4CECE, #AECBD8, #F6EFE4);
+        color: #404040;
+        /* Dark charcoal text for readability on a light background */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        /* Prevent horizontal scroll on small screens */
+    }
+
+    /* Header Styling: Sticky, Background, Shadow */
+    .header {
+        border-bottom: 1px solid rgba(246, 239, 228, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        /* For Safari support */
+        /* Frosted glass effect */
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        /* Lighter shadow for the light theme */
+        /* Set a semi-transparent background color */
+        background: rgba(246, 239, 228, 0.5);
+        /* Add a subtle border to define the shape and a box shadow for depth */
+        border: 1px solid rgba(246, 239, 228, 0.4);
+    }
+
+    /* Header Content Layout */
+    .header-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1rem 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Title Styling: Solid Text, Heavy Font */
+    .title {
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--charcoal);
+        /* Strong navy blue for the title */
+        text-decoration: none;
+        text-shadow: none;
+        /* Removed the glow effect */
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        gap: 1.5rem;
+        /* Ensures vertical alignment is not skewed by line height */
+        margin: 0;
+        /* Resets any default margin */
+    }
+
+    .header-content a {
+        color: var(--dark-blue);
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .header-content a:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
+    }
+
+    /* Subtitle Styling */
+    .subtitle {
+        color: #64748b;
+        margin-top: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    /* Button Styling: Solid, Rounded, Shadow, Hover Effects */
+    .btn {
+        padding: 0.75rem 1.5rem;
+        background: var(--vibrant-blue);
+        /* Vibrant blue for the button */
+        border: none;
+        border-radius: 0.75rem;
+        /* More rounded */
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(32, 64, 179, 0.3);
+        /* Lighter shadow */
+        position: relative;
+        overflow: hidden;
+        /* For shimmer effect */
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(32, 64, 179, 0.5);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 15px rgba(32, 64, 179, 0.2);
+    }
+
+    /* Shimmer effect for button */
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: skewX(-30deg);
+        transition: all 0.5s ease;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    /* Main Container for Dashboard Content */
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1.5rem;
+        flex-grow: 1;
+        /* Allows container to take available space */
+    }
+
+    /* Main Card Styling: Background, Rounded, Padding, Border, Shadow, Blur */
+    .main-card {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2rem;
+        /* More rounded */
+        padding: 2.5rem;
+        /* More padding */
+        margin-bottom: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Lighter border */
+        backdrop-filter: blur(25px);
+        /* Stronger blur */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        /* Lighter shadow */
+    }
+
+    /* Decision Grid Layout */
+    .decision-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2.5rem;
+        /* More gap */
+        margin-bottom: 2.5rem;
+    }
+
+    /* Individual Decision Section Styling */
+    .decision-section {
+        text-align: center;
+    }
+
+    /* Decision Icon Styling: Size, Rounded, Background, Shadow, Hover */
+    .decision-icon {
+        width: 4.5rem;
+        /* Larger icon */
+        height: 4.5rem;
+        border-radius: 50%;
+        background: var(--vibrant-blue);
+        /* Vibrant blue for the icon background */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.25rem;
+        box-shadow: 0 0 10px rgba(32, 64, 179, 0.3);
+        /* Lighter glow */
+        transition: transform 0.3s ease;
+    }
+
+    .decision-icon svg {
+        color: white;
+        /* Ensure icons inside are white for contrast */
+    }
+
+    .decision-icon:hover {
+        transform: scale(1.05);
+    }
+
+    /* Decision Text Styling: Large, Bold */
+    .decision-text {
+        font-size: 3rem;
+        /* Larger text */
+        font-weight: 900;
+        /* Bolder */
+        color: var(--dark-blue);
+        /* Strong navy blue for the text */
+        text-shadow: none;
+        /* Removed the glow */
+    }
+
+    /* Confidence Circle Container */
+    .confidence-circle {
+        position: relative;
+        width: 9rem;
+        /* Larger circle */
+        height: 9rem;
+        margin: 0 auto 1.25rem;
+    }
+
+    /* Confidence Circle Background Stroke */
+    .confidence-bg {
+        fill: none;
+        stroke: #e2e8f0;
+        /* Light background stroke */
+        stroke-width: 10;
+        /* Thicker stroke */
+    }
+
+    /* Confidence Progress Stroke: Dynamic, Rounded, Glow, Animation */
+    .confidence-progress {
+        fill: none;
+        stroke: var(--vibrant-blue);
+        /* Vibrant blue for the progress bar */
+        stroke-width: 10;
+        stroke-linecap: round;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0 0 8px rgba(32, 64, 179, 0.4));
+        /* Lighter glow */
+        transition: stroke-dashoffset 1s ease-out;
+        /* Smooth animation */
+    }
+
+    /* Confidence Text Overlay */
+    .confidence-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.8rem;
+        /* Larger text */
+        font-weight: 800;
+        color: var(--dark-blue);
+        /* Dark text for contrast */
+    }
+
+    /* Date Info Section Layout */
+    .day-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        /* More gap */
+    }
+
+    /* Individual day Item Styling: Background, Rounded, Border, Shadow, Hover */
+    .day-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem;
+        /* More padding */
+        background: rgba(255, 255, 255, 0.3);
+        /* Frosted glass background */
+        border-radius: 1rem;
+        /* More rounded */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+    }
+
+    .day-item p {
+        color: #404040;
+    }
+
+    .day-item span {
+        color: var(--dark-blue);
+        font-weight: 600;
+    }
+
+    .day-item:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Reasoning Section Styling: Padding, Background, Rounded, Border, Inner Shadow */
+    .reasoning-section {
+        padding: 2rem;
+        /* More padding */
+        background: rgba(255, 255, 255, 0.3);
+        /* Frosted glass background */
+        border-radius: 1.5rem;
+        /* More rounded */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin-top: 2.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease;
+    }
+
+    .reasoning-section:hover,
+    .factor-card:hover,
+    .stat-card:hover,
+    .chart-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Section Title Styling: Larger, Bold, Icon Glow */
+    .section-title {
+        font-size: 1.25rem;
+        /* Larger title */
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        /* More gap */
+        color: var(--dark-blue);
+        /* Strong navy blue */
+    }
+
+    .section-title svg {
+        filter: drop-shadow(0 0 8px currentColor);
+        /* Glow for icons based on their stroke color */
+    }
+
+    /* Key Factors Grid Layout */
+    .factors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        /* More gap */
+        margin-top: 1.5rem;
+    }
+
+    /* Individual Factor Card Styling: Padding, Background, Rounded, Border, Shadow, Hover */
+    .factor-card {
+        padding: 1.25rem;
+        /* More padding */
+        background: rgba(255, 255, 255, 0.3);
+        /* Frosted glass background */
+        border-radius: 1rem;
+        /* More rounded */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease;
+    }
+
+    /* Factor Number Styling: Size, Rounded, Gradient, Bold, Shadow */
+    .factor-number {
+        width: 1.75rem;
+        /* Larger number */
+        height: 1.75rem;
+        border-radius: 50%;
+        background: var(--vibrant-blue);
+        /* Vibrant blue for the number background */
+        color: white;
+        font-size: 0.875rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(32, 64, 179, 0.2);
+    }
+
+    /* Component Grid Layout (for analysis sections) */
+    .component-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        /* Adjusted min-width for better layout */
+        gap: 2rem;
+        /* More gap */
+        margin-bottom: 2.5rem;
+    }
+
+    /* Individual Component Card Styling: Background, Rounded, Padding, Border, Blur, Shadow */
+    .component-card {
+        background: rgba(255, 255, 255, 0.3);
+        /* Frosted glass background */
+        border-radius: 1.5rem;
+        /* More rounded */
+        padding: 2rem;
+        /* More padding */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        /* Lighter shadow */
+    }
+
+    /* Stats Grid Layout */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        /* More gap */
+        margin-bottom: 1.75rem;
+    }
+
+    /* Individual Stat Card Styling: Background, Rounded, Border, Inner Shadow */
+    .stat-card {
+        text-align: center;
+        padding: 1.25rem;
+        /* More padding */
+        background: rgba(255, 255, 255, 0.3);
+        /* Frosted glass background */
+        border-radius: 1rem;
+        /* More rounded */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease;
+        /* Lighter inner shadow */
+        color: #404040;
+    }
+
+    /* Stat Value Styling: Larger, Bold */
+    .stat-value {
+        font-size: 1.8rem;
+        /* Larger value */
+        font-weight: 800;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Stat Label Styling */
+    .stat-label {
+        font-size: 0.85rem;
+        /* Slightly larger label */
+        color: #64748b;
+        /* Lighter grey for labels */
+    }
+
+    /* Chart Container Styling: Height, Background, Rounded, Padding */
+    .chart-container {
+        height: 220px;
+        /* Taller charts */
+        position: relative;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease;
+        border-radius: 1rem;
+        padding: 0.5rem;
+    }
+
+    /* Event List Layout */
+    .event-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        /* More gap */
+    }
+
+    /* Individual Event Item Styling: Background, Rounded, Border, Shadow, Hover */
+    .event-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        /* More padding */
+        background: rgba(255, 255, 255, 0.3);
+        /* Frosted glass background */
+        border-radius: 1rem;
+        /* More rounded */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease;
+        color: #404040;
+    }
+
+    .event-item:hover {
+        transform: translateX(5px);
+    }
+
+    /* Event Indicator Styling: Size, Rounded, Shadow */
+    .event-indicator {
+        width: 0.6rem;
+        /* Larger indicator */
+        height: 0.6rem;
+        border-radius: 50%;
+        margin-right: 0.6rem;
+        box-shadow: 0 0 8px currentColor;
+        /* Glow based on color */
+    }
+
+    /*THIS COMPONENT HAS BEEN REMOVED*/
+    /* Market Overview Section Styling: Background, Rounded, Padding, Border, Blur, Shadow */
+    .market-overview {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Market Grid Layout */
+    .market-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        /* Adjusted min-width */
+        gap: 1.25rem;
+        /* More gap */
+    }
+
+    /* Footer Styling */
+    .footer {
+        text-align: center;
+        margin-top: 3rem;
+        /* More margin */
+        padding-bottom: 1.5rem;
+        color: #64748b;
+        /* Lighter grey for footer text */
+        font-size: 0.875rem;
+    }
+
+    /* General Glow Effect Class (used on main card) */
+    .glow {
+        box-shadow: 0 0 15px rgba(32, 64, 179, 0.2);
+        /* Lighter glow */
+    }
+
+    /* Specific Text Color Classes */
+    .text-green {
+        color: #10B981;
+        /* A more subtle green */
+    }
+
+    .text-red {
+        color: #EF4444;
+        /* Standard red */
+    }
+
+    .text-yellow {
+        color: #F59E0B;
+        /* Standard yellow */
+    }
+
+    .text-blue {
+        color: var(--vibrant-blue);
+        /* Updated to the new vibrant blue */
+    }
+
+    /* Updated to match gradient blue */
+    .text-purple {
+        color: #6078ea;
+    }
+
+    /* Updated to match gradient purple */
+    .text-orange {
+        color: #F97316;
+        /* Standard orange */
+    }
+
+    .text-cyan {
+        color: #50d4ff;
+        /* A lighter cyan */
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.7;
+        }
+    }
+
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+
+    /* Responsive Adjustments for Smaller Screens */
+    @media (max-width: 768px) {
+        .decision-grid {
+            grid-template-columns: 1fr;
+            /* Stack columns */
+        }
+
+        .component-grid {
+            grid-template-columns: 1fr;
+            /* Stack columns */
+        }
+
+        .header-content {
+            flex-direction: column;
+            gap: 1.5rem;
+            /* More gap on mobile */
+        }
+
+        .title {
+            font-size: 1.75rem;
+            text-align: center;
+        }
+
+        .refresh-btn {
+            width: 100%;
+            /* Full width button */
+        }
+
+        /*MARKET-OVERVIEW COMPONENT HAS BEEN REMOVED*/
+        .main-card,
+        .component-card,
+        .market-overview {
+            padding: 1.5rem;
+            /* Less padding on mobile */
+        }
+
+        .confidence-circle {
+            width: 7rem;
+            height: 7rem;
+        }
+
+        .confidence-text {
+            font-size: 1.3rem;
+        }
+
+        .decision-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+
+        .decision-text {
+            font-size: 2.2rem;
+        }
+    }

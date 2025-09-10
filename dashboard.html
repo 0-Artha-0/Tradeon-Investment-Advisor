@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradeon Investment Dashboard</title>
+    <link rel="icon" href="icons/Logo.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="dashstyle.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="title"><img src="icons/logo.png" class="logo-container" alt="Logo" height="80" />Multi-Agent
+                    Investment Advisor </h1>
+            </div>
+            <div style="text-align: right;">
+                <div style="color: #94a3b8; font-size: 0.875rem;" id="currentTime"></div>
+                <button id="refreshBtn" class="btn" onclick="refreshAnalysis()">Refresh Analysis</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-card glow">
+            <div class="decision-grid">
+                <div class="decision-section">
+                    <div class="decision-icon" id="decisionIcon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5eb7fb" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="decision-text" id="investmentDecision">BUY</div>
+                    <div style="margin-top: 0.5rem;">Investment Decision</div>
+                </div>
+
+                <div class="decision-section">
+                    <div class="confidence-circle">
+                        <svg width="128" height="128">
+                            <circle cx="64" cy="64" r="56" class="confidence-bg"></circle>
+                            <circle cx="64" cy="64" r="56" class="confidence-progress" stroke-dasharray="351.858"
+                                stroke-dashoffset="47" id="confidenceProgress"></circle>
+                        </svg>
+                        <div class="confidence-text" id="confidenceText">84%</div>
+                    </div>
+                    <div>Confidence Level</div>
+                </div>
+
+                <div class="day-info">
+                    <div class="day-item">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <img src="icons/calendar.png" height="25">
+                            <span style="color: #484848;">Date</span>
+                        </div>
+                        <span class="text-yellow" style="font-weight: 700;" id="date">Refreshing..</span>
+                    </div>
+                    <div class="day-item">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <img src="icons/riyal.png" height="25"></simg>
+                            <span style="color: #484848;">Last Price</span>
+                        </div>
+                        <span class="text-blue" style="font-weight: 700;" id="lastPrice">Refreshing..</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reasoning-section">
+                <h3 class="section-title">
+                    <img src="icons/analysis.png" height="25">
+                    AI Reasoning
+                </h3>
+                <p style="line-height: 1.7;" id="aiReasoning">Refreshing dashboard data..</p>
+            </div>
+
+            <div style="margin-top: 2.5rem;">
+                <h3 class="section-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="2" />
+                    </svg>
+                    Key Decision Factors
+                </h3>
+                <div class="factors-grid" id="keyFactorsGrid">
+                    <div class="factor-card">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div class="factor-number">1</div>
+                            <span style="font-size: 0.85rem; font-weight:bold; color: #484848;">Factor 1</span>
+                        </div>
+                        <p style="font-size: 0.95rem; color: #7c8b9e;">Predicted Price..</p>
+                    </div>
+                    <div class="factor-card">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div class="factor-number">2</div>
+                            <span style="font-size: 0.85rem; font-weight:bold; color: #484848;">Factor 2</span>
+                        </div>
+                        <p style="font-size: 0.95rem; color: #7c8b9e;">Social Sentiment..</p>
+                    </div>
+                    <div class="factor-card">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div class="factor-number">3</div>
+                            <span style="font-size: 0.85rem; font-weight:bold; color: #484848;">Factor 3</span>
+                        </div>
+                        <p style="font-size: 0.95rem; color: #7c8b9e;">News..</p>
+                    </div>
+                    <div class="factor-card">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <div class="factor-number">4</div>
+                            <span style="font-size: 0.85rem; font-weight:bold; color: #484848;">Factor 4</span>
+                        </div>
+                        <p style="font-size: 0.95rem; color: #7c8b9e;">Memory..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-grid">
+            <div class="component-card">
+                <h3 class="section-title">
+                    <img src="icons/lstm.png" height="25">
+                    LSTM Price Prediction
+                </h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value text-green" id="lstmPredictionScore">-</div>
+                        <div class="stat-label">Predicted Price</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value text-blue" id="lstmPredictionInterval">-</div>
+                        <div class="stat-label">Prediction Interval</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="lstmChart"></canvas>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <h3 class="section-title">
+                    <img src="icons/social.png" height="25">
+                    Social Sentiment Analysis
+                </h3>
+                <div class="stat-card" style="margin-bottom: 1.75rem;">
+                    <div class="stat-value text-blue" id="sentimentScore">-</div>
+                    <div class="stat-label">Sentiment Score</div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+                <p style="font-size: 0.95rem; margin-top: 1rem;" id="sentimentSummary"></p>
+            </div>
+        </div>
+
+        <div class="component-grid">
+            <div class="component-card">
+                <h3 class="section-title">
+                    <img src="icons/news.png" height="25">
+                    News Analysis
+                </h3>
+                <div class="event-list" id="eventList">
+                    <div class="event-item">
+                        <div class="event-indicator" style="background: #ffcc15;"></div>
+                        <div style="font-size: 0.95rem; font-weight: 500; color: #7c8b9e;">-
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <h3 class="section-title">
+                    <img src="icons/database.png" height="25">
+                    Memory Bank Insights
+                </h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value text-purple" id="scenariosFound">-</div>
+                        <div class="stat-label">Scenarios Found</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value text-green" id="successRate">-</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+                <div class="stat-card" style="margin-bottom: 1.25rem;">
+                    <p style="font-size: 0.95rem; font-weight: 500; color: #7c8b9e; text-align: justify; "
+                        id="memoryInsight">-</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="component-card" style="display: flex; justify-content:space-between; gap: 1rem;">
+            <h3 class="section-title">
+                <img src="icons/report.png" height="30">
+                Full Analysis Report
+            </h3>
+            <button id="downloadBtn" class="btn" onclick="downloadReport()">Download Report</button>
+        </div>
+
+        <div class="footer">
+            <p>⚡ © 2025 JRCAI - Summer Research Program. All Rights Reserved</p>
+        </div>
+    </div>
+
+    <script src="dashscript.js"></script>
+</body>
+
+</html>
