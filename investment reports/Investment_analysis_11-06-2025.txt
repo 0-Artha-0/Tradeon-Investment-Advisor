@@ -1,0 +1,45 @@
+**Aramco - INVESTMENT DECISION: SELL**
+
+**Confidence Score: 75%**
+
+**Short Summary: Despite a moderately positive next-day stock prediction, the decision is to SELL. This is driven by weak market sentiment and, most importantly, a compelling and recent pattern in the historical memory where nearly identical scenarios have consistently resulted in price declines, proving the model's prediction to be overly optimistic.**
+
+---
+
+# Investment Analysis Report for Aramco
+
+**1. Executive Summary:**
+The investment decision for Aramco is **SELL**. While the quantitative model predicts a moderate price increase of 1.09%, this signal is overridden by two key factors. First, current market sentiment is notably weak. Second, and more critically, a reflection on recent past performance reveals a consistent pattern where similar bullish predictions, when combined with weak sentiment and non-impactful news, have repeatedly failed to materialize, often resulting in a price drop. The decision to SELL is therefore a data-driven override of the model's forecast, based on learned historical outcomes.
+
+**2. Current Day's Next-Day Stock Prediction Analysis:**
+The LSTM model provides a bullish short-term outlook, forecasting a price increase to **25.07 SAR**, which represents a **+1.09%** change from the current price. In isolation, this quantitative signal suggests a positive trajectory for the next trading day.
+
+**3. Current Day's Sentiment Analysis Overview:**
+The aggregated sentiment score from Arabic and English Twitter discussions is **0.334**. This score is significantly below the neutral threshold of 0.5, indicating a prevailing negative or bearish sentiment surrounding the company on social media. This negative sentiment acts as a direct counterweight to the model's positive prediction.
+
+**4. Current Day's Key News Headlines Analysis(Last 3 days):**
+- **[Kanebridge News], June 11, 2025: "Egypt Allocates Red Sea Land to Support Bond Issuance and Debt Reduction"**
+This headline concerns regional economic activity in Egypt. While geographically relevant, it has no direct or immediate impact on Aramco's operations, revenue, or stock price. The overall news landscape for Aramco is therefore considered neutral and does not provide a strong directional catalyst.
+
+**5. Reflection on Past Performance Memory:**
+A review of the historical data reveals a crucial and highly relevant pattern from late May and early June 2025.
+- **Key Insight:** There have been multiple instances where the model predicted a positive change between +1.0% and +2.0%, but the stock price ultimately fell.
+- **Similar Scenarios:**
+    - **June 4, 2025:** Predicted +1.25%, Sentiment 0.463. The decision was SELL based on this emerging pattern, and it proved **correct** as the price fell.
+    - **June 3, 2025:** Predicted +1.04%, Sentiment 0.441. A BUY decision was made, which proved **incorrect** as the price fell -0.72%.
+    - **June 1, 2025:** Predicted +1.96%, Sentiment 0.384. A BUY decision was made, which proved **incorrect** as the price fell -0.72%.
+    - **May 27, 2025:** Predicted +1.43%, Sentiment 0.428. A BUY decision was made, which proved **incorrect** as the price fell -0.60%.
+
+This repeated pattern demonstrates that in the recent market environment, the model has been systematically over-optimistic when sentiment is weak, and its bullish predictions have been unreliable. The successful SELL decision on June 4th was a direct result of identifying and acting on this pattern.
+
+**6. Holistic Reasoning and Decision Justification:**
+The decision to SELL is a synthesis of conflicting signals, with historical performance serving as the definitive tie-breaker.
+
+- The **bullish prediction (+1.09%)** is noted but treated with caution.
+- The **bearish sentiment (0.334)** provides a strong reason for this caution.
+- The **neutral news** fails to provide any support for the model's bullish outlook.
+
+The most compelling evidence comes from the **Past Performance Memory**. The current conditions—a +1.09% prediction and a 0.334 sentiment score—fall squarely within the parameters of recent, repeated prediction failures. Trusting the model in these specific circumstances has consistently led to incorrect BUY decisions. Conversely, the one time this pattern was used to justify a SELL decision (`04-06-2025`), the outcome was correct. Therefore, the most logical, data-driven action is to trust the learned historical pattern over the isolated quantitative forecast.
+
+**7. Disclaimer:**
+This analysis is based on provided data and AI models. It is not financial advice. Market conditions are subject to rapid change, and investors should conduct their own due diligence.
