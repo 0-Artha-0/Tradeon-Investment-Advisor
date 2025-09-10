@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+pandas
+python-dateutil
+nest_asyncio
+twscrape
+transformers
+torch
+joblib
+google-generativeai
