@@ -8,4 +8,4 @@ twscrape
 transformers
 torch
 joblib
-google-generativeai
+google-genai
