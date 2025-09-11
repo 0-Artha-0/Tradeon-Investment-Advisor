@@ -37,7 +37,7 @@ jobs:
       - name: Run your app
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python automated_run.py
+        run: python main.py
 
       - name: Upload updated accounts.db
         uses: actions/upload-artifact@v4
