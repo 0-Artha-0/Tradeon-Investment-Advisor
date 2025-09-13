@@ -39,6 +39,16 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python main.py
 
+      - name: Commit and push updated memory files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add investment_memory.xlsx today_dashboard_data.json
+          git commit -m "Update memory files from scheduled run" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload updated accounts.db
         uses: actions/upload-artifact@v4
         with:
