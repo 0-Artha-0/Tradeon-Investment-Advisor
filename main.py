@@ -373,4 +373,5 @@ def get_report_file(end_date):
         report = file.read()
     return Response(report, media_type="text/plain")
 
+# Run the app to update the investment memory and dashboard json data during scheduled runs
 data = dashboard_data()
