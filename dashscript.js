@@ -177,73 +177,84 @@ async function refreshAnalysis() {
     refreshButton.textContent = 'Refreshing...';
     refreshButton.disabled = true;
 
+    data
+
     try {
         const response = await fetch('http://127.0.0.1:8000/dashboard_data');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        console.log('Data fetched successfully:', data);
-
-        // --- Update Main Info ---
-        document.getElementById('date').textContent = data.main_info.date;
-        document.getElementById('date').style.fontWeight = '700'; // Keep font weight
-
-        document.getElementById('lastPrice').textContent = data.main_info.last_price;
-        document.getElementById('lastPrice').style.fontWeight = '700'; // Keep font weight
-
-        // --- Update Main Decision Section ---
-        document.getElementById('investmentDecision').textContent = data.main_decision.decision;
-        const decisionIconContainer = document.getElementById('decisionIcon');
-        decisionIconContainer.innerHTML = getDecisionIcon(data.main_decision.decision);
-        decisionIconContainer.querySelector('svg').style.stroke = data.main_decision.decision_color;
-        document.getElementById('investmentDecision').style.color = data.main_decision.decision_color;
-        document.getElementById('investmentDecision').style.textShadow = `0 0 25px ${data.main_decision.decision_color}66`; // Add glow effect
-        decisionIconContainer.style.boxShadow = `0 0 40px ${data.main_decision.decision_color}66`;
-
-
-        const confidence = data.main_decision.confidence;
-        document.getElementById('confidenceText').textContent = `${confidence}%`;
-        const circumference = 2 * Math.PI * 56; // 56 is the radius
-        const offset = circumference - (confidence / 100) * circumference;
-        const confidenceProgress = document.getElementById('confidenceProgress');
-        confidenceProgress.style.strokeDashoffset = offset;
-        confidenceProgress.style.stroke = data.main_decision.confidence_color;
-        confidenceProgress.style.filter = `drop-shadow(0 0 15px ${data.main_decision.confidence_color}99)`;
-
-
-        document.getElementById('aiReasoning').textContent = data.main_decision.ai_reasoning;
-
-        populateKeyFactors(data.main_decision.key_factors);
-
-        // --- Update LSTM Prediction ---
-        document.getElementById('lstmPredictionScore').textContent = data.lstm_prediction.prediction_score.toFixed(2);
-        document.getElementById('lstmPredictionInterval').textContent = data.lstm_prediction.prediction_interval;
-        renderLineChart('lstmChart', data.lstm_prediction.chart_data, data.lstm_prediction.chart_labels, '#22c55e', 'LSTM Prediction');
-
-        // --- Update Social Sentiment ---
-        document.getElementById('sentimentScore').textContent = data.social_sentiment.sentiment_score.toFixed(3);
-        renderLineChart('sentimentChart', data.social_sentiment.chart_data, data.social_sentiment.chart_labels, '#4f46e5', 'Sentiment Trend');
-        document.getElementById('sentimentSummary').textContent = data.social_sentiment.summary;
-
-        // --- Update Event Impact ---
-        populateEventList(data.event_impact.events);
-
-        // --- Update Memory Bank Insights ---
-        document.getElementById('scenariosFound').textContent = data.memory_bank.scenarios_found;
-        document.getElementById('successRate').textContent = `${data.memory_bank.success_rate}%`;
-        document.getElementById('memoryInsight').textContent = data.memory_bank.insight;
+        data = await response.json();
+        console.log('Data fetched from backend successfully:', data);
 
     } catch (error) {
-        console.error('Error fetching dashboard data:', error);
-        // Instead of an alert, update a visible status message
-        // You might want a dedicated area for messages, e.g., <div id="statusMessage"></div>
-        // document.getElementById('statusMessage').textContent = 'Failed to load dashboard data. Please check the backend server.';
-        alert('Failed to load dashboard data. Please check the backend server.');
-    } finally {
+        try {
+            data = 
+                fetch('./today_dashboard_data.json')
+                .then(response => response.json();)
+                .then(data => {
+                    console.log("✅ JSON loaded:", data);;
+                  })                
+        } catch (error) {
+            console.error('Error fetching dashboard data:', error);
+            // Instead of an alert, update a visible status message
+            // You might want a dedicated area for messages, e.g., <div id="statusMessage"></div>
+            // document.getElementById('statusMessage').textContent = 'Failed to load dashboard data. Please check the backend server.';
+            alert('Failed to load dashboard data. Please check the backend server.');
+        } finally {
         refreshButton.textContent = originalButtonText; // Restore original text
         refreshButton.disabled = false;
+        }
     }
+
+    // --- Update Main Info ---
+    document.getElementById('date').textContent = data.main_info.date;
+    document.getElementById('date').style.fontWeight = '700'; // Keep font weight
+
+    document.getElementById('lastPrice').textContent = data.main_info.last_price;
+    document.getElementById('lastPrice').style.fontWeight = '700'; // Keep font weight
+
+    // --- Update Main Decision Section ---
+    document.getElementById('investmentDecision').textContent = data.main_decision.decision;
+    const decisionIconContainer = document.getElementById('decisionIcon');
+    decisionIconContainer.innerHTML = getDecisionIcon(data.main_decision.decision);
+    decisionIconContainer.querySelector('svg').style.stroke = data.main_decision.decision_color;
+    document.getElementById('investmentDecision').style.color = data.main_decision.decision_color;
+    document.getElementById('investmentDecision').style.textShadow = `0 0 25px ${data.main_decision.decision_color}66`; // Add glow effect
+    decisionIconContainer.style.boxShadow = `0 0 40px ${data.main_decision.decision_color}66`;
+
+
+    const confidence = data.main_decision.confidence;
+    document.getElementById('confidenceText').textContent = `${confidence}%`;
+    const circumference = 2 * Math.PI * 56; // 56 is the radius
+    const offset = circumference - (confidence / 100) * circumference;
+    const confidenceProgress = document.getElementById('confidenceProgress');
+    confidenceProgress.style.strokeDashoffset = offset;
+    confidenceProgress.style.stroke = data.main_decision.confidence_color;
+    confidenceProgress.style.filter = `drop-shadow(0 0 15px ${data.main_decision.confidence_color}99)`;
+
+
+    document.getElementById('aiReasoning').textContent = data.main_decision.ai_reasoning;
+
+    populateKeyFactors(data.main_decision.key_factors);
+
+    // --- Update LSTM Prediction ---
+    document.getElementById('lstmPredictionScore').textContent = data.lstm_prediction.prediction_score.toFixed(2);
+    document.getElementById('lstmPredictionInterval').textContent = data.lstm_prediction.prediction_interval;
+    renderLineChart('lstmChart', data.lstm_prediction.chart_data, data.lstm_prediction.chart_labels, '#22c55e', 'LSTM Prediction');
+
+    // --- Update Social Sentiment ---
+    document.getElementById('sentimentScore').textContent = data.social_sentiment.sentiment_score.toFixed(3);
+    renderLineChart('sentimentChart', data.social_sentiment.chart_data, data.social_sentiment.chart_labels, '#4f46e5', 'Sentiment Trend');
+    document.getElementById('sentimentSummary').textContent = data.social_sentiment.summary;
+
+    // --- Update Event Impact ---
+    populateEventList(data.event_impact.events);
+
+    // --- Update Memory Bank Insights ---
+    document.getElementById('scenariosFound').textContent = data.memory_bank.scenarios_found;
+    document.getElementById('successRate').textContent = `${data.memory_bank.success_rate}%`;
+    document.getElementById('memoryInsight').textContent = data.memory_bank.insight;
 }
 
 // Function to handle report download 
@@ -294,4 +305,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set up interval to call refreshAnalysis every 10 seconds (10000 milliseconds)
     setInterval(refreshAnalysis, 10000000000);
+
 });
