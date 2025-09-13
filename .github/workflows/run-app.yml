@@ -37,7 +37,7 @@ jobs:
       - name: Run your app
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python main.py
+        run: python automate_run.py
         
       - name: Debug file changes
         run: |
