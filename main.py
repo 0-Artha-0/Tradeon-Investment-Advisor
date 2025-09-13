@@ -372,6 +372,3 @@ def get_report_file(end_date):
     with open(f"investment reports/Investment_analysis_{end_date}.txt", "r", encoding="utf-8") as file:
         report = file.read()
     return Response(report, media_type="text/plain")
-
-# Run the app to update the investment memory and dashboard json data during scheduled runs
-data = dashboard_data()
