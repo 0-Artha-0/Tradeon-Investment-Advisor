@@ -1,6 +1,5 @@
 # tadawul_scraper.py
 import requests
-import cloudscraper
 import time
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -9,13 +8,11 @@ from bs4 import BeautifulSoup
 
 
 def get_fresh_cookies():
-    scraper = cloudscraper.create_scraper(
-        browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False}
-    )
+    session = requests.Session()
     bootstrap_url = "https://www.saudiexchange.sa/wps/portal/saudiexchange/home/"
-    scraper.get(bootstrap_url)
+    session.get(bootstrap_url)
 
-    return scraper.cookies.get_dict()
+    return session.cookies.get_dict()
 
 # Build session payload
 
@@ -176,9 +173,6 @@ def fetch_data(start_date, end_date, entity_id="2222", max_records=1500):
         'x-requested-with': 'XMLHttpRequest',
     }
 
-    scraper = cloudscraper.create_scraper(
-        browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False}
-    )
     cookies = get_fresh_cookies()
 
     url = 'https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/reports-publications/historical-reports/!ut/p/z1/lY9NDsIgFITP0gMYRhRki8ZSE2uLFK1sDAtjSBRdGM9v4078SZ3dS755M0McaYmL_h6O_hYu0Z-6e-f4nkkOWghUKJoZOIzithFDOh-T7SsgSsWhV1JXdMKgNiDuLz9MzaDzuhwtsYYC7-fHF8ke-S5BtBVdA5NPmQCFQQp8mJh8eN_wBH6UNIdIrmdrW4TFQGbZA6as4Ag!/p0/IZ7_5A602H80O0HTC060SG6UT81216=CZ6_5A602H80O0HTC060SG6UT812E4=NJpopulateCompanyDetails=/'
@@ -187,7 +181,7 @@ def fetch_data(start_date, end_date, entity_id="2222", max_records=1500):
     for start in range(0, max_records, 100):
         payload = build_payload(start, start_date, end_date)
         payload['selectedEntity'] = entity_id  # Dynamic injection
-        res = scraper.post(url, headers=headers,
+        res = requests.post(url, headers=headers,
                             cookies=cookies, data=payload)
         res.raise_for_status()
         rows = res.json().get("data", [])
@@ -203,4 +197,3 @@ def fetch_data(start_date, end_date, entity_id="2222", max_records=1500):
     past_days = preprocess_data(past_days)
 
     return past_days
-
