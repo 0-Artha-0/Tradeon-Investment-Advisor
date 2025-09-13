@@ -33,12 +33,12 @@ jobs:
         if: steps.download.outcome == 'failure'
         run: |
           echo "${{ secrets.ENCODED_DB }}" | base64 --decode > accounts.db
-
+      
       - name: Run your app
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python main.py
-
+        
       - name: Debug file changes
         run: |
           ls -l
