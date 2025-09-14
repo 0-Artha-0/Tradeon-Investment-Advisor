@@ -191,7 +191,7 @@ async function refreshAnalysis() {
         try {
             data = 
                 fetch('./today_dashboard_data.json')
-                .then(response => response.json();)
+                .then(response => response.json())
                 .then(data => {
                     console.log("✅ JSON loaded:", data);;
                   })                
@@ -313,4 +313,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(refreshAnalysis, 10000000000);
 
 });
+
 
