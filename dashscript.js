@@ -177,7 +177,7 @@ async function refreshAnalysis() {
     refreshButton.textContent = 'Refreshing...';
     refreshButton.disabled = true;
 
-    data
+    let data
 
     try {
         const response = await fetch('http://127.0.0.1:8000/dashboard_data');
@@ -313,5 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(refreshAnalysis, 10000000000);
 
 });
+
 
 
