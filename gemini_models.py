@@ -470,7 +470,10 @@ def split_summarize(client, report):
 
     # Extract confidence score
     confidence_match = re.search(
-        r"Confidence Score:\s*\*?([\d.]+)\s*%?\*?", report, re.IGNORECASE)
+        r"confidence\s*score\s*[:\-]?\s*\*{0,2}\s*([0-9]+(?:\.[0-9]+)?)\s*%?",
+        report,
+        re.IGNORECASE
+    )
     confidence = float(confidence_match.group(
         1)) if confidence_match else float("nan")
 
@@ -488,3 +491,4 @@ def split_summarize(client, report):
     ) and re.match(r"^\d+\.", kp)] if match else ["Key factors not found"]
 
     return [decision, confidence, summary, keypoints]
+
