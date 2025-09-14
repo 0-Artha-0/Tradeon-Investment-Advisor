@@ -189,12 +189,9 @@ async function refreshAnalysis() {
 
     } catch (error) {
         try {
-            data = 
-                fetch('./today_dashboard_data.json')
-                .then(response => response.json())
-                .then(data => {
-                    console.log("✅ JSON loaded:", data);;
-                  })                
+            const response = await fetch('./today_dashboard_data.json')
+            data = await response.json();
+            console.log("✅ JSON loaded:", data);                
         } catch (error) {
             console.error('Error fetching dashboard data:', error);
             // Instead of an alert, update a visible status message
@@ -313,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(refreshAnalysis, 10000000000);
 
 });
+
 
 
 
