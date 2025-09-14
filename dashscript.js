@@ -207,6 +207,12 @@ async function refreshAnalysis() {
         }
     }
 
+    // -- Log Weekend Message if true --
+        if (data.weekend) {
+            console.log("🚫 Market closed today (weekend). Displaying last available data.");
+            alert("🚫 Market closed today (weekend). Displaying last available data.");
+        }
+    
     // --- Update Main Info ---
     document.getElementById('date').textContent = data.main_info.date;
     document.getElementById('date').style.fontWeight = '700'; // Keep font weight
@@ -307,3 +313,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(refreshAnalysis, 10000000000);
 
 });
+
