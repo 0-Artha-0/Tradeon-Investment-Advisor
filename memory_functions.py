@@ -146,3 +146,14 @@ def fetch_lists():
     sentiment_list = sentiment_list[-7:]  # get the last 7 predictions only
 
     return [lstm_list, sentiment_list]
+
+# Function to get the last computed date in the memory
+
+
+def last_computed_date():
+    # Load the existing memory DataFrame
+    memory_df = pd.read_excel('investment_memory.xlsx', engine='openpyxl')
+
+    # Return the last known date
+    last_date = memory_df.iloc[-1]['Datetime']
+    return last_date
